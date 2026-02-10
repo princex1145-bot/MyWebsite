@@ -511,6 +511,143 @@
         .reveal.visible {
             animation: fadeInUp 0.6s ease-out forwards;
         }
+
+        /* Enter Data Section */
+        .enter-data {
+            max-width: 700px;
+        }
+        .data-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+        .data-tab {
+            padding: 0.6rem 1.2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .data-tab:hover {
+            color: var(--accent);
+            border-color: var(--accent-dim);
+        }
+        .data-tab.active {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .data-panel {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            animation: fadeInUp 0.3s ease-out;
+        }
+        .data-panel.active {
+            display: block;
+        }
+        .data-panel h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            background: var(--bg-dark);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: var(--accent);
+            background: rgba(245, 158, 11, 0.05);
+        }
+        .upload-zone input[type="file"] {
+            display: none;
+        }
+        .upload-zone .upload-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .upload-zone .upload-text strong {
+            color: var(--accent);
+        }
+        .image-preview {
+            margin-top: 1rem;
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            object-fit: cover;
+        }
+        .skill-tags input {
+            margin-bottom: 0.5rem;
+        }
+        .add-skill-btn {
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .add-skill-btn:hover {
+            background: var(--accent-dim);
+        }
+        .project-image-preview {
+            max-width: 120px;
+            max-height: 80px;
+            border-radius: 6px;
+            object-fit: cover;
+            margin-top: 0.5rem;
+        }
     </style>
 </head>
 
@@ -530,6 +667,7 @@
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#education">Education</a>
+            <a href="#enter-data">Enter Data</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -561,7 +699,6 @@
             <div class="skill-item">Manufacturing</div>
             <div class="skill-item">GD&T</div>
             <div class="skill-item">CNC Basics</div>
-            <div class="skill-item">Thermodynamics</div>
             <div class="skill-item">Machine Design</div>
         </div>
     </section>
@@ -595,10 +732,148 @@
         </div>
     </section>
 
+    <section id="enter-data" class="enter-data">
+        <h2>Enter Data</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Add or edit your content by category. Upload images for profile and projects.</p>
+        <div class="section-content reveal">
+            <div class="data-tabs">
+                <button type="button" class="data-tab active" data-panel="profile">Profile & Image</button>
+                <button type="button" class="data-tab" data-panel="about">About</button>
+                <button type="button" class="data-tab" data-panel="skills">Skills</button>
+                <button type="button" class="data-tab" data-panel="projects">Projects</button>
+                <button type="button" class="data-tab" data-panel="education">Education</button>
+                <button type="button" class="data-tab" data-panel="contact">Contact</button>
+            </div>
+
+            <div id="panel-profile" class="data-panel active">
+                <h3>Profile & Photo</h3>
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="input-name" placeholder="e.g. Abhilash" value="Abhilash">
+                </div>
+                <div class="form-group">
+                    <label>Tagline</label>
+                    <input type="text" id="input-tagline" placeholder="e.g. Mechanical Engineering Student" value="Mechanical Engineering Student">
+                </div>
+                <div class="form-group">
+                    <label>Upload Profile Image</label>
+                    <div class="upload-zone" id="profile-upload-zone">
+                        <input type="file" id="profile-image" accept="image/*">
+                        <p class="upload-text"><strong>Click or drag</strong> to upload profile photo</p>
+                        <img id="profile-preview" class="image-preview" alt="Preview" style="display: none;">
+                    </div>
+                </div>
+            </div>
+
+            <div id="panel-about" class="data-panel">
+                <h3>About Me</h3>
+                <div class="form-group">
+                    <label>About text</label>
+                    <textarea id="input-about" placeholder="Write a short bio...">I'm Abhilash, a mechanical engineering student with a focus on design, thermal systems, and manufacturing. I enjoy working with CAD software, FEA, and hands-on projects?from concept sketches to prototypes. I'm always eager to learn new tools and take on challenges that blend theory with practical application.</textarea>
+                </div>
+            </div>
+
+            <div id="panel-skills" class="data-panel">
+                <h3>Skills & Tools</h3>
+                <div class="form-group skill-tags">
+                    <label>Add skills (one per line or separate inputs)</label>
+                    <input type="text" id="skill-1" placeholder="e.g. CAD (SolidWorks)" value="CAD (SolidWorks)">
+                    <input type="text" id="skill-2" placeholder="e.g. AutoCAD" value="AutoCAD">
+                    <input type="text" id="skill-3" placeholder="e.g. FEA / ANSYS" value="FEA / ANSYS">
+                    <input type="text" id="skill-4" placeholder="e.g. Manufacturing" value="Manufacturing">
+                    <input type="text" id="skill-5" placeholder="e.g. GD&T" value="GD&T">
+                    <input type="text" id="skill-6" placeholder="e.g. CNC Basics" value="CNC Basics">
+                    <input type="text" id="skill-7" placeholder="e.g. Machine Design" value="Machine Design">
+                    <button type="button" class="add-skill-btn" id="add-skill-btn">+ Add another skill</button>
+                </div>
+            </div>
+
+            <div id="panel-projects" class="data-panel">
+                <h3>Projects</h3>
+                <div class="form-group">
+                    <label>Project 1 ? Title</label>
+                    <input type="text" id="project1-title" placeholder="Project title" value="CAD Assembly & Drafting">
+                </div>
+                <div class="form-group">
+                    <label>Project 1 ? Description</label>
+                    <textarea id="project1-desc" placeholder="Short description">Designed and assembled mechanical components with proper constraints and created production-ready drawings with tolerances and GD&T.</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Project 1 ? Image (optional)</label>
+                    <div class="upload-zone upload-zone-sm" data-project="1">
+                        <input type="file" class="project-image-input" data-project="1" accept="image/*">
+                        <p class="upload-text">Upload image</p>
+                        <img class="project-image-preview" data-project="1" alt="Project 1" style="display: none;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Project 2 ? Title</label>
+                    <input type="text" id="project2-title" placeholder="Project title" value="FEA & Structural Analysis">
+                </div>
+                <div class="form-group">
+                    <label>Project 2 ? Description</label>
+                    <textarea id="project2-desc" placeholder="Short description">Performed stress and deformation analysis on parts and assemblies using simulation tools to validate designs before manufacturing.</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Project 2 ? Image (optional)</label>
+                    <div class="upload-zone upload-zone-sm" data-project="2">
+                        <input type="file" class="project-image-input" data-project="2" accept="image/*">
+                        <p class="upload-text">Upload image</p>
+                        <img class="project-image-preview" data-project="2" alt="Project 2" style="display: none;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Project 3 ? Title</label>
+                    <input type="text" id="project3-title" placeholder="Project title" value="Mini / Academic Projects">
+                </div>
+                <div class="form-group">
+                    <label>Project 3 ? Description</label>
+                    <textarea id="project3-desc" placeholder="Short description">Hands-on projects involving mechanisms, thermal systems, or manufacturing processes?from concept to prototype.</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Project 3 ? Image (optional)</label>
+                    <div class="upload-zone upload-zone-sm" data-project="3">
+                        <input type="file" class="project-image-input" data-project="3" accept="image/*">
+                        <p class="upload-text">Upload image</p>
+                        <img class="project-image-preview" data-project="3" alt="Project 3" style="display: none;">
+                    </div>
+                </div>
+            </div>
+
+            <div id="panel-education" class="data-panel">
+                <h3>Education</h3>
+                <div class="form-group">
+                    <label>Degree / Course</label>
+                    <input type="text" id="edu-title" placeholder="e.g. Bachelor of Engineering ? Mechanical" value="Bachelor of Engineering ? Mechanical">
+                </div>
+                <div class="form-group">
+                    <label>Status / Year</label>
+                    <input type="text" id="edu-meta" placeholder="e.g. Ongoing or 2021?2025" value="Ongoing">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="edu-desc" placeholder="Core subjects, highlights">Core subjects: Machine Design, Thermodynamics, Fluid Mechanics, Manufacturing Technology, CAD/CAM.</textarea>
+                </div>
+            </div>
+
+            <div id="panel-contact" class="data-panel">
+                <h3>Contact</h3>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="input-email" placeholder="your@email.com" value="youremail@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Extra message (e.g. availability)</label>
+                    <textarea id="input-contact-msg" placeholder="Open to internships...">Open to internships, project collaborations, and technical discussions.</textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact">
         <h2>Contact</h2>
         <div class="section-content reveal">
-            <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+            <p>Email: <a href="hacker babu@gmail.com">youremail@example.com</a></p>
             <p>Open to internships, project collaborations, and technical discussions.</p>
         </div>
     </section>
